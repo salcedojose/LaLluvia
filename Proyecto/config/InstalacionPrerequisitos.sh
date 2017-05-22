@@ -1,6 +1,7 @@
 #!/bin/bash 
 
-# Instalar php en conjunto con apache para servidor.
+# Instalar php en conjunto con apache y mysql para servidor.
+apt-get install lamp-server^
 apt-get install php mysql-server apache2 libapache2-mod-php
 # Instalar paquetes necesarios para python y python+mysql.
 apt-get install python-pip python-mysqldb

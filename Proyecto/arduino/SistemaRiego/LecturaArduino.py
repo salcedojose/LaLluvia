@@ -43,14 +43,20 @@ def ActualizarValores(valorArduino):
 
         # Actualizar valores.
         cursor.callproc(ACTUALIZAR_VALORES, lecturas)
+        con.commit()
     except:
         print("Fallo de conexion a " + BASE_DATOS)
+    finally:
+        # Cerrar conexiones a almacenamiento.
+        cursor.close()
+        con.close()
 
 
 # PRINCIPAL.
 # Conectar con Arduino y leer indefinidamente.
 # Obtener datos de arduino y convertir a formato usable.
-while True:
+repetir = True
+while repetir:
     try:
         print("Conectando a " + DISPOSITIVO)
         arduino = serial.Serial(DISPOSITIVO, BAUDIOS)
@@ -69,3 +75,4 @@ while True:
         ActualizarValores(valorArduino)
     except:
         print("Falla de conexion a " + DISPOSITIVO)
+        repetir = False
