@@ -56,3 +56,14 @@ END;
 END IF;
 END $$
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS ObtenerValoresArduino;
+
+-- Obtener los valores que retorno el Arduino.
+DELIMITER $$
+CREATE PROCEDURE ObtenerValoresArduino
+BEGIN
+	SELECT d.LuzArduino, d.TemperaturaArduino, d.PhArduino, d.HumedadArduino
+	FROM dato AS d LIMIT 1;
+END $$
+DELIMITER ;
