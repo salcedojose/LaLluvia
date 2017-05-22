@@ -10,10 +10,10 @@ define("TEMPERATURA", "TemperaturaArduino");
 define("PH", "PhArduino");
 define("HUMEDAD", "HumedadArduino");
 
-require_once RUTA_CONEXION;
+include_once RUTA_CONEXION;
 
 // Preparacion de llamada al procedimiento almacenado.
-$Procedimiento = $con->prepare("CALL " + PROCEDIMIENTO_OBTENER_VALORES_ARDUINO);
+$Procedimiento = $con->prepare("CALL " . PROCEDIMIENTO_OBTENER_VALORES_ARDUINO);
 
 // Ejecutar la consulta.
 if ($Procedimiento->execute()) {
@@ -33,5 +33,7 @@ if ($Procedimiento->execute()) {
 
 	// Encodificar los datos de vuelta en forma de JSON.
 	echo json_encode($valoresJson);
+} else {
+	echo "Falla de conexion.";
 }
 ?>
