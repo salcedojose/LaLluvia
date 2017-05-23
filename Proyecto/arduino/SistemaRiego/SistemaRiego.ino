@@ -1,39 +1,53 @@
-// CONSTANTES.
+#include "DHT.h"
+#include <Wire.h>
+#include <Adafruit_BMP085.h>
+
+// CONSTANTES
+#define DHTPIN 2
+#define DHTTYPE DHT11
 // Pines para los distintos valores.
-const byte PIN_LUZ = 2;
-const byte PIN_TEMPERATURA = 3;
-const byte PIN_PH = 4;
-const byte PIN_HUMEDAD = 5;
+DHT dht(DHTPIN, DHTTYPE);
+Adafruit_BMP085 bmp;
+const int PIN_HUMEDAD = A0;
+int pinLDR = 3;
+int luz = 0;
+
 
 // PREPARACION.
 void setup() {
   // Preparar comunicacion serial.
   Serial.begin(9600);
-
-  // Preparar valores de entrada.
-  pinMode(PIN_LUZ, INPUT);
-  pinMode(PIN_TEMPERATURA, INPUT);
-  pinMode(PIN_PH, INPUT);
-  pinMode(PIN_HUMEDAD, INPUT);
+  dht.begin();
+  //BMP
+   if (!bmp.begin()) 
+   {
+    Serial.println("BMP180 sensor not found");
+    while (1) {}
+   }
 }
 
 // PRINCIPAL.
 void loop() {
   // Leer valores.
-  const int luz = analogRead(PIN_LUZ);
-  const int temperatura = analogRead(PIN_TEMPERATURA);
-  const int ph = analogRead(PIN_PH);
-  const int humedad = analogRead(PIN_HUMEDAD);
+  //Lectura con LDR
+  luz = analogRead(pinLDR);
+  //Se realiza lectra tanto en DHT11 como en BMP180, por lo cual se realiza promedio de ambas lecturas grados Celsius
+  float t = dht.readTemperature();
+  float t_bmp = bmp.readTemperature();
+  //Lectura con BMP180 en Pa
+  float pressure = bmp.readPressure();
+  /*Lectura con sensor de humedad en humedad relativa (%)*/
+  int humedad = analogRead(PIN_HUMEDAD);
 
   // Guardar datos obtenidos en formato Json.
   String datosJson = "{";
   datosJson += "\"luz\": " + String(luz);
-  datosJson += ", \"temperatura\": " + String(temperatura);
-  datosJson += ", \"ph\": " + String(ph);
+  datosJson += ", \"temperatura\": " + String((t+t_bmp)/2);
+  datosJson += ", \"presion\": " + String(pressure);
   datosJson += ", \"humedad\": " + String(humedad);
   datosJson += "}";
 
   // Desplegar en serial los datos obtenidos.
   Serial.println(datosJson);
-  delay(1000);
+  delay(5000);
 }
