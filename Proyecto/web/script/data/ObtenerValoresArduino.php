@@ -9,6 +9,7 @@ define("LUZ", "LuzArduino");
 define("TEMPERATURA", "TemperaturaArduino");
 define("PH", "PhArduino");
 define("HUMEDAD", "HumedadArduino");
+define("REGANDO", "Regando");
 
 include_once RUTA_CONEXION;
 
@@ -29,6 +30,7 @@ if ($Procedimiento->execute()) {
 		, TEMPERATURA => $registro[TEMPERATURA]
 		, PH => $registro[PH]
 		, HUMEDAD => $registro[HUMEDAD]
+		, REGANDO => $registro[REGANDO]
 	);
 
 	// Encodificar los datos de vuelta en forma de JSON.

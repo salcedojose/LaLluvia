@@ -11,6 +11,8 @@ FLUSH PRIVILEGES;
 USE sistema_riego;
 
 -- TABLAS.
+-- Almacenamiento de datos de arduino.
+DROP TABLE IF EXISTS dato;
 CREATE TABLE IF NOT EXISTS dato
 (
 	LuzArduino float NOT NULL
@@ -22,6 +24,7 @@ CREATE TABLE IF NOT EXISTS dato
 	, HumedadArduino float NOT NULL
 	, HumedadReal float NULL
 	, Actualizacion datetime NULL
+	, Regando bit NOT NULL DEFAULT 0
 );
 
 -- Agregar valor por defecto a fechatiempo de actualizacion.
@@ -35,7 +38,7 @@ DROP PROCEDURE IF EXISTS ActualizarValores;
 -- Actualizar los valores existentes provenientes del arduino.
 DELIMITER $$
 CREATE PROCEDURE ActualizarValores (IN luz float, IN temperatura float
-	, IN ph float, IN humedad float
+	, IN ph float, IN humedad float, IN regando bit
 )
 BEGIN
 	-- Si no hay registros de valores guardados, insertar uno nuevo.
@@ -44,14 +47,15 @@ BEGIN
 		UPDATE dato
 		SET LuzArduino = luz, TemperaturaArduino = temperatura
 		, PhArduino = ph, HumedadArduino = humedad
-		, Actualizacion = CURRENT_TIMESTAMP;
+		, Actualizacion = CURRENT_TIMESTAMP
+		, Regando = regando;
 END;
 	ELSE BEGIN
 		INSERT INTO dato(LuzArduino, LuzReal
 			, TemperaturaArduino, TemperaturaReal
 			, PhArduino, PhReal
-			, HumedadArduino, HumedadReal)
-		VALUES(luz, 0, temperatura, 0, ph, 0, humedad, 0);
+			, HumedadArduino, HumedadReal, Regando)
+		VALUES(luz, 0, temperatura, 0, ph, 0, humedad, 0, regando);
 END;
 END IF;
 END $$
@@ -63,7 +67,8 @@ DROP PROCEDURE IF EXISTS ObtenerValoresArduino;
 DELIMITER $$
 CREATE PROCEDURE ObtenerValoresArduino()
 BEGIN
-	SELECT d.LuzArduino, d.TemperaturaArduino, d.PhArduino, d.HumedadArduino
+	SELECT d.LuzArduino, d.TemperaturaArduino, d.PhArduino
+	, d.HumedadArduino, d.Regando
 	FROM dato AS d LIMIT 1;
 END $$
 DELIMITER ;

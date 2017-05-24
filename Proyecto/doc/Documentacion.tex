@@ -1,0 +1,100 @@
+\documentclass{article}
+\usepackage{graphicx} % Graficas.
+\usepackage[utf8]{inputenc} % Uso de UTF.
+\usepackage[hidelinks]{hyperref} % Indice con hipervinculos.
+\usepackage{caption}
+\usepackage{listings} % Copeo de codigo.
+\usepackage{fullpage} % Uso de pagina completa.
+\usepackage{color} % Color para codigo.
+
+\renewcommand*\contentsname{Índice}
+
+\begin{document}
+
+\begin{figure}[!htb]
+\minipage{0.32\textwidth}
+	\includegraphics[width=\linewidth]{"img/LogoSEP".png}
+\endminipage\hfill
+\minipage{0.32\textwidth}
+	\includegraphics[width=\linewidth]{"img/LogoTNM".PNG}
+\endminipage\hfill
+\minipage{0.32\textwidth}
+	\includegraphics[width=\linewidth]{"img/LogoITT".png}
+\endminipage\hfill
+\end{figure}
+
+\begingroup
+\LARGE
+\begin{verbatim}
+Subdirección Académica
+Departamento de Sistemas y Computación
+Ingeniería en Sistemas Computacionales
+Semestre: Enero - Junio 2017
+Materia: Sistemas Programables (3SC8A)
+
+Nombre del tema:
+Documentacion proyecto
+
+Nombre de los integrantes:
+Salcedo Morales José Manuel (13211419)
+Espinoza Covarrubias Silverio Alejandro (13211465)
+Alvarez Corral Miguel Angel (13211384)
+
+Nombre del catedrático:
+Ingeniero Luís Alberto Mitre Padilla
+
+\end{verbatim}
+\endgroup
+
+\newpage
+\tableofcontents
+
+\newpage
+\section{Introducción}
+
+\section{Componentes utilizados}
+\begin{itemize}
+        \item Arduino
+        \item Cables Jumper
+        \item Fuente de alimentacion para arduino
+\end{itemize}
+
+\newpage
+\section{Marco Teórico}
+\begin{itemize}
+	\item Arduino: Arduino se refiere a una plataforma o placa de electrónica de código abierto y al software utilizado para programarlo. Arduino está diseñado para hacer la electrónica más accesible a los artistas, diseñadores, aficionados y a cualquiera interesado en la creación de objetos interactivos o entornos. Un tablero de Arduino se puede comprar pre-ensamblado o, porque el diseño de hardware es de código abierto, construido a mano. De cualquier manera, los usuarios pueden adaptar las tablas a sus necesidades, así como actualizar y distribuir sus propias versiones.
+\end{itemize}
+
+\newpage
+\section{Desarrollo}
+
+\subsection{Instalacion}
+\textbf{El simbolo ``/'' significa la raiz del proyecto.}
+
+\subsubsection{Prerequisitos}
+
+\begin{itemize}
+	\item Entrar y correr el archivo de \textbf{/Proyecto/config/InstalacionPrerequisitos.sh} con \textbf{sudo bash InstalacionPrerequisitos.sh}
+	\item Entrar a mysql con el comando \textbf{mysql -u root -p} (o un usuario distinto a root si se tiene) e ingresando la contrase\~na del usuario. Correr el archivo de configuracion de base de datos con \textbf{source /rutaRaizProyecto/Proyecto/db/CreacionBd.sql}.
+	\item Copiar el folder \textbf{/Proyecto/web} a \textbf{/var/www/html/} y entrar a la pagina con (ejemplo): \textbf{http://localhost/web/}
+\end{itemize}
+
+\subsubsection{Corrida}
+Para mantener una constante lectura de Arduino y subida de valores obtenidos a la base de datos, se tiene que ir al folder \textbf{/Proyecto/arduino/SistemaRiego} y correr el script de Python con \textbf{python LecturaArduino.py}.
+\newline Para verificar la subida de datos se puede ir a la pagina web o correr los comandos dentro de mysql:
+\begin{lstlisting}[language=bash]
+mysql> use sistema_riego;
+mysql> select * from dato;
+\end{lstlisting}
+
+\subsection{Imagenes}
+
+\newpage
+\section{Conclusión}
+
+\renewcommand\refname{Referencias}
+\begin{thebibliography}{1}
+	\bibitem{Arduino} What is Arduino? - Definition from Techopedia. (n.d.). Retrieved March 26, 2017, from https://www.techopedia.com/definition/27874/arduino	
+\end{thebibliography}
+
+\end{document}
