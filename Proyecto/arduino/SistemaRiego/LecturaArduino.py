@@ -13,10 +13,7 @@ class ValorArduino(object):
         self.temperatura = float(temperatura)
         self.ph = float(ph)
         self.humedad = float(humedad)
-        if (regando >= 1):
-            self.regando = 1
-        else:
-            self.regando = 0
+        self.regando = int(regando)
 
 
 # CONSTANTES.
@@ -38,7 +35,7 @@ def ActualizarValores(valorArduino):
     "Actualizar valores leidos de arduino a base de datos."
     # Guardar parametros a actualizar.
     lecturas = (valorArduino.luz, valorArduino.temperatura,
-                valorArduino.ph, valorArduino.humedad)
+                valorArduino.ph, valorArduino.humedad, valorArduino.regando)
 
     try:
         # Preparar conexion a base de datos.
@@ -73,7 +70,8 @@ while repetir:
         datos = lambda: None
         datos.__dict__ = json.loads(datosJson)
         valorArduino = ValorArduino(datos.luz, datos.temperatura,
-                                    datos.ph, datos.humedad, datos.regando)
+                                    datos.presion, datos.humedad, datos.regando)
+        print(datos.regando)
 
         # Guardar datos obtenidos en almacenamiento.
         ActualizarValores(valorArduino)

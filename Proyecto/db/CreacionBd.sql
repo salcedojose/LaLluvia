@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS dato
 	, HumedadArduino float NOT NULL
 	, HumedadReal float NULL
 	, Actualizacion datetime NULL
-	, Regando bit NOT NULL DEFAULT 0
+	, Regando int NOT NULL DEFAULT 0
 );
 
 -- Agregar valor por defecto a fechatiempo de actualizacion.
@@ -38,7 +38,7 @@ DROP PROCEDURE IF EXISTS ActualizarValores;
 -- Actualizar los valores existentes provenientes del arduino.
 DELIMITER $$
 CREATE PROCEDURE ActualizarValores (IN luz float, IN temperatura float
-	, IN ph float, IN humedad float, IN regando bit
+	, IN ph float, IN humedad float, IN regando int
 )
 BEGIN
 	-- Si no hay registros de valores guardados, insertar uno nuevo.

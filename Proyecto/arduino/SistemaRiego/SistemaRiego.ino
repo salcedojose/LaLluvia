@@ -29,7 +29,7 @@ void setup() {
   //BMP
    if (!bmp.begin()) 
    {
-    Serial.println("BMP180 sensor not found");
+    //Serial.println("BMP180 sensor not found");
     while (1) {}
    }
   pinMode(pinRelay, OUTPUT);
@@ -114,5 +114,3 @@ void loop() {
       digitalWrite(pinRelay, LOW);
       return "0";
     }
-
-    
