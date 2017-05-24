@@ -71,7 +71,6 @@ while repetir:
         datos.__dict__ = json.loads(datosJson)
         valorArduino = ValorArduino(datos.luz, datos.temperatura,
                                     datos.presion, datos.humedad, datos.regando)
-        print(datos.regando)
 
         # Guardar datos obtenidos en almacenamiento.
         ActualizarValores(valorArduino)

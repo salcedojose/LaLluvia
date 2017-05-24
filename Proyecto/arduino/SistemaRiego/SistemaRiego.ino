@@ -10,8 +10,8 @@
 #define y2 15
 #define y 35
 #define y1 10
-#define z1 500
-#define z2 400
+#define z1 400
+#define z2 300
 // Pines para los distintos valores.
 DHT dht(DHTPIN, DHTTYPE);
 Adafruit_BMP085 bmp;
