@@ -72,7 +72,7 @@ Este proyecto ha sido realizado con los siguientes componenetes:
 	\item Protoboard
 	\item Sensor de húmedad en suelo
 	\item Sensor de húmedad  y temperatura (DTH11)
-	\item Sensor barométrico
+	\item Sensor barométrico BMP180
 	\item Fotorresistencia
 	\item Relay 5VDC – 120 VAC
 	\item Resistencia
@@ -123,15 +123,29 @@ Especificaciones:
 	\item Sensor resistivo de húmedad
 	\item Sensor de temperatura NTC
 	\item Voltaje de alimentación: 5V
-	\item SRango de temperatura: 0-50ºC
+	\item Rango de temperatura: 0-50ºC
 	\item Rango de humedad: 20-90{\%}RH
 	\item Tamaño: 25 x 16 x 7 mm
 	\item Peso: 9g
 \end{itemize}
 
 
-\subsection{Sensor barométrico}
+\subsection{Sensor barométrico BMP180}
 
+Ésta placa incluye un sensor de presión barométrica BMP180 de alta precisión con un rango de medida de entre 300 y 1100 hPa (Hecto Pascal) con un margen de error mínimo de tan sólo 0.03 hPa. Está basado en tecnología piezo-resistiva de alta eficiencia, linearidad y larga duración. El sensor tiene un rango de alimentación de entre 1,8V y 3,6 Vdc. Está diseñado para ser conectado directamente a un microcontrolador mediante su interfaz I2C. Dispone de dos resistencias pull-up de 4,7k sobre el bus I2C.
+
+Éste tipo de sensores pueden ser utilizados para calcular la altitud con bastante precisión, por lo que son muy útiles en UAV. Este modelo incluye un pequeño jumper (soldado) para poder desconectar las resistencias Pull-Up I2C.
+
+Características:
+\begin{itemize}
+	\item Interfaz de dos cables I^2C
+	\item Amplio rango de medición
+	\item Alimentación: 1,8 - 3,6Vdc
+	\item Calibrado de fábrica
+	\item Include medición de temperatura para compensación
+	\item Dimensiones: 16,5x16,5mm
+	\item Muy pequeño y ligero
+\end{itemize}
 
 \subsection{Fotorresistencia}
 
@@ -181,6 +195,7 @@ mysql> select * from dato;
 	\bibitem{Arduino} What is Arduino? - Definition from Techopedia. (n.d.). Retrieved March 26, 2017, from https://www.techopedia.com/definition/27874/arduino
 	\bibitem{Sensor de húmedad en suelo} Electronilab from https://electronilab.co/tienda/sensor-de-humedad-de-suelo-higrometro/
 	\bibitem{Sensor de húmedad  y temperatura (DTH11)} HETPRO from https://hetpro-store.com/sensor-dht11-humedad/?utm_source=google&utm_medium=cpc&utm_campaign=Product&utm_term=SDTH0011&utm_content=SDTH0011&gclid=CjwKEAjwu4_JBRDpgs2RwsCbt1MSJABOY8an_YIe39bwPw9nGCoGn0nhwnEDJa0ecuyz6HhjDzsVNRoCX-7w_wcB
+	\bibitem{Sensor barométrico BMP180} BricoGeek from http://tienda.bricogeek.com/sensores/282-sensor-barometrico-bmp180.html
 \end{thebibliography}
 
 \end{document}
