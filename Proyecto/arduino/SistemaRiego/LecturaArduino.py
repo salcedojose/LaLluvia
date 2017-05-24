@@ -8,11 +8,15 @@ import json
 
 # CLASES.
 class ValorArduino(object):
-    def __init__(self, luz, temperatura, ph, humedad):
+    def __init__(self, luz, temperatura, ph, humedad, regando):
         self.luz = float(luz)
         self.temperatura = float(temperatura)
         self.ph = float(ph)
         self.humedad = float(humedad)
+        if (regando >= 1):
+            self.regando = 1
+        else:
+            self.regando = 0
 
 
 # CONSTANTES.
@@ -69,7 +73,7 @@ while repetir:
         datos = lambda: None
         datos.__dict__ = json.loads(datosJson)
         valorArduino = ValorArduino(datos.luz, datos.temperatura,
-                                    datos.ph, datos.humedad)
+                                    datos.ph, datos.humedad, datos.regando)
 
         # Guardar datos obtenidos en almacenamiento.
         ActualizarValores(valorArduino)
