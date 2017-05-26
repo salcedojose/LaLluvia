@@ -50,21 +50,16 @@ Ingeniero Luis Alberto Mitre Padilla
 
 \newpage
 \section{Introduccion}
+Para este proyecto se hara uso de un sistema de riego.
+\newline Este regando de manera automatica cuando se cumplen ciertas condiciones climaticas.
+\newline Apoyado por una interfaz Web que muestra los valores actuales medidos.
 
-\section{Componentes utilizados}
-\begin{itemize}
-        \item Arduino
-        \item Cables Jumper
-        \item Fuente de alimentacion para arduino
-\end{itemize}
-
-\newpage
 \section{Marco Teorico}
 \begin{itemize}
 	\item Arduino: Arduino se refiere a una plataforma o placa de electronica de codigo abierto y al software utilizado para programarlo. Arduino esta diseñado para hacer la electronica mas accesible a los artistas, diseñadores, aficionados y a cualquiera interesado en la creacion de objetos interactivos o entornos. Un tablero de Arduino se puede comprar pre-ensamblado o, porque el diseño de hardware es de codigo abierto, construido a mano. De cualquier manera, los usuarios pueden adaptar las tablas a sus necesidades, asi como actualizar y distribuir sus propias versiones.
 \end{itemize}
 
-Este proyecto ha sido realizado con los siguientes componenetes:
+Este proyecto ha sido realizado con los siguientes componentes:
 
 \begin{itemize}
 	\item Arduino UNO
@@ -79,21 +74,17 @@ Este proyecto ha sido realizado con los siguientes componenetes:
 \end{itemize}
 
 \subsection{Arduino UNO}
-
 El Arduino Uno es una placa electronica basada en el  ATmega328  (ficha tecnica). Cuenta con 14 pines digitales de entrada / salida (de los cuales 6 se pueden utilizar como salidas PWM), 6 entradas analogicas, un 16  MHz  resonador de ceramica, de una conexion USB, un conector de alimentacion, una cabecera ICSP, y un boton de reinicio.
 
 \subsection{Protoboard}
-
 Es una especia de tablero con orificios, en la cual se pueden insertar componentes electronicos y cables para armar circuitos. Como su nombre lo indica, esta tableta sirve para experimentar con circuitos electronicos, con lo que se asegura un buen funcionamiento del mismo. 
 
 \subsection{Sensor de humedad en suelo}
-
 Este sensor de humedad puede leer la cantidad de humedad presente en el suelo que lo rodea. Es un sensor de baja tecnologia, pero es ideal para el seguimiento de un jardin urbano. Se trata de una herramienta indispensable para un jardin de contacto.
 
 Este sensor utiliza las dos sondas para pasar corriente a traves del suelo, y luego  lee la resistencia para obtener el nivel de humedad. Mas agua hace que el suelo conduzca la electricidad con mayor facilidad (menos resistencia), mientras que el suelo seco es un mal conductor de la electricidad (mas resistencia).
 
 Caracteristicas:
-
 \begin{itemize}
 	\item Sensibilidad ajustable ajustando el potenciometro digital (azul).
 	\item Voltaje de operacion: 3.3V ~ 5V
@@ -105,8 +96,7 @@ Caracteristicas:
 	\item El modulo tiene un amplificador LM393.
 \end{itemize}
 
-Defnicion de pines:
-
+Definicion de pines:
 \begin{itemize}
 	\item VCC (5V)
 	\item GND
@@ -128,9 +118,7 @@ Especificaciones:
 	\item Peso: 9g
 \end{itemize}
 
-
 \subsection{Sensor barometrico BMP180}
-
 Ésta placa incluye un sensor de presion barometrica BMP180 de alta precision con un rango de medida de entre 300 y 1100 hPa (Hecto Pascal) con un margen de error minimo de tan solo 0.03 hPa. Esta basado en tecnologia piezo-resistiva de alta eficiencia, linearidad y larga duracion. El sensor tiene un rango de alimentacion de entre 1,8V y 3,6 Vdc. Esta diseñado para ser conectado directamente a un microcontrolador mediante su interfaz I2C. Dispone de dos resistencias pull-up de 4,7k sobre el bus I2C.
 
 Éste tipo de sensores pueden ser utilizados para calcular la altitud con bastante precision, por lo que son muy utiles en UAV. Este modelo incluye un pequeño jumper (soldado) para poder desconectar las resistencias Pull-Up I2C.
@@ -146,23 +134,22 @@ Especificaciones:
 \end{itemize}
 
 \subsection{Fotorresistencia}
-
 Una fotorresistencia es un componente electronico cuya resistencia disminuye con el aumento de intensidad de luz incidente. Puede tambien ser llamado fotorresistor, fotoconductor, celula fotoelectrica o resistor dependiente de la luz, cuyas siglas, LDR, se originan de su nombre en ingles light-dependent resistor. Su cuerpo esta formado por una celula foto receptora y dos patillas. Su simbolo electronico es:
 
 \subsection{Relay 5VDC – 120 VAC}
-
 El rele o relevador es un dispositivo electromecanico. Funciona como un interruptor controlado por un circuito electrico en el que por medio de una bobina y un electroiman, se acciona un juego de uno o varios contactos que permiten abrir o cerrar otros circuitos electricos independientes. Lo que hace la bobina es crear un campo magnetico que lleva los contactos a establecer una conexion. El electroiman, por su parte, permite el cierre de los contactos. De esta forma, el relevador actua como un interruptor que puede fomentar el paso de la corriente electrica o su interrupcion. 
 
 \subsection{Resistencia}
-
 Se le denomina resistencia electrica a la oposicion al flujo de electrones al moverse a traves de un conductor. La unidad de resistencia en el Sistema Internacional es el ohmio, que se representa con la letra griega omega, en honor al fisico aleman Georg Simon Ohm, quien descubrio el principio que ahora lleva su nombre.
 
 \subsection{Diodo 1N4007}
-
 Es uno de los diodos de una serie muy utilizados en infinidad de equipos electronicos. Se utiliza principalmente para convertir la corriente alterna en directa. Su encapsulado es de tipo DO-41. 
 
 \newpage
 \section{Desarrollo}
+Para el funcionamiento del sistema, en cuanto al hardware todos los sensores estan conectados al Arduino. En caso de que las condiciones del medio ambiente se cumplan, el Arduino dara la orden de regar a la planta.
+\newline En cuestion de software, un script de python lee un JSON que provee el arduino. Tambien se encarga de enviar los datos obenidos a una base de datos de MySql.
+\newline Para la pagina web, un scirpt de php obtiene los valores de la base de datos, y javascript con conjunto con la libreria de JQUERY muestra los valores de manera amigable para el usurio.
 
 \subsection{Instalacion}
 \textbf{El simbolo ``/'' significa la raiz del proyecto.}
@@ -184,6 +171,7 @@ mysql> select * from dato;
 \end{lstlisting}
 
 \subsection{Imagenes}
+\includegraphics[width=\textwidth]{captura/InterfazWeb}
 \includegraphics[width=\textwidth]{captura/1}
 \includegraphics[width=\textwidth]{captura/2}
 \includegraphics[width=\textwidth]{captura/3}
@@ -192,6 +180,7 @@ mysql> select * from dato;
 
 \newpage
 \section{Conclusion}
+Un sistema de riego automatica es de mucha ayuda en la casa. Combinado con el hecho de que se pueden ver los valores del medio ambiente en tiempo real, se puede verificar el estado de la planta en caso de que no se confie si esta en un ambiente bueno o no.
 
 \renewcommand\refname{Referencias}
 \begin{thebibliography}{1}
