@@ -1,0 +1,8 @@
+\documentclass[letterpaper, 10 pt, conference]{ieeeconf} 
+\usepackage[utf8]{inputenc} % Ingreso de caracteres especiales.
+\usepackage{graphicx} % Control de graficos
+\begin{document}
+
+
+
+\end{document}
